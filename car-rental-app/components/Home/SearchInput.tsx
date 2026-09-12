@@ -5,7 +5,7 @@ const SearchInput = () => {
     <div>
         <h2 className="text-center text-[20px] text-gray-400">Lets Search what you Need</h2>
         <div>
-            <input type="text" placeholder="Location" className="p-2 outline-none bg-transparent"
+            <input type="text" placeholder="Location" className="p-2 outline-none bg-transparent"></input>
         </div>
     </div>
   )
