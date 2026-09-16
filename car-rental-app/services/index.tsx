@@ -1,9 +1,17 @@
-import { gql, request } from "graphql-request";
+import { request, gql } from "graphql-request";
 
-const MASTER_URL = 'https://ap-south-1.cdn.hygraph.com/content/cmtfwc8yb01vp06w2pvxm4kdi/master';
-
-export const getCarsList = async () => {
-    const query = gql`
+export interface Car {
+  id: string;
+  name: string;
+  price: number;
+  carAvg: number | string;
+  carBrand: string;
+  carType: string;
+  image: {
+    url: string;
+  };
+}
+const GET_CARS = gql`
     query CarLists {
   carLists {
     id
@@ -16,7 +24,16 @@ export const getCarsList = async () => {
       url
     }
   }
-}`
-    const result: any = await request(MASTER_URL,query);
-    return result;
+}`;
+
+export const getCarsList = async (): Promise<Car[]> => {
+  const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT!;
+
+  try {
+    const result = await request<{ carLists: Car[] }>(endpoint, GET_CARS);
+    return result.carLists;
+  } catch (error) {
+    console.error("Error fetching car list:", error);
+    return [];
+  }
 };
