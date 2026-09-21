@@ -1,18 +1,12 @@
 import type { Metadata } from 'next'
-import { ClerkProvider} from '@clerk/nextjs'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
+import { Outfit } from 'next/font/google'
 import './globals.css'
 import NavBar from '@/components/NavBar'
-import { Outfit } from 'next/font/google'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const outfit = Outfit({
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -27,8 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-        <body className="flex flex-col min-h-screen bg-zinc-50 font-sans dark:bg-black">
+      <html lang="en">
+        <body className={`${outfit.className} flex flex-col min-h-screen bg-zinc-50 antialiased dark:bg-black`}>
           <NavBar />
           {children}
         </body>

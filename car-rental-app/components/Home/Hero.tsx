@@ -9,7 +9,7 @@ const Hero = () => {
             <div>
                 <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl leading-[1.1]">
                     Elevate Every Journey with{" "}
-                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-800 bg-clip-text text-transparent">
+                    <span className="inline-block whitespace-nowrap bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-800 bg-clip-text text-transparent">
                         MR Car Rental
                     </span>
                 </h1>
