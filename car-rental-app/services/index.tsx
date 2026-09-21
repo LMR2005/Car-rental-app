@@ -37,3 +37,48 @@ export const getCarsList = async (): Promise<Car[]> => {
     return [];
   }
 };
+
+export const getStoreLocations = async () => {
+  const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT!;
+
+  const query = gql`
+  query storeLocation {
+  storeLocations(where: {}) {
+    address
+  }
+}
+  `
+
+  const result = await request(endpoint, query);
+  return result;
+}
+
+export const createBooking = async (formValue:any) => {
+  const endpoint = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT!;
+
+  const carId =
+    typeof formValue.carId === "object"
+      ? formValue.carId?.connect?.id || formValue.carId?.id
+      : formValue.carId;
+
+  const mutationQuery = gql`
+  mutation MyMutation {
+  createBooking(
+    data: 
+    {carId: {connect: 
+      {id: "${carId}"}}, 
+      contactNumber: "`+formValue.contactNumber+`", 
+      dropOffDate: "`+formValue.dropOffDate+`", 
+      dropOffTime: "`+formValue.dropOffTime+`", 
+      pickUpDate: "`+formValue.pickUpDate+`", 
+      pickUpTime: "`+formValue.pickUpTime+`", 
+      userName: "`+formValue.userName+`"}
+  ) {
+    id
+  }
+}
+  `;
+
+  const result=await request(endpoint, mutationQuery);
+  return result;
+}

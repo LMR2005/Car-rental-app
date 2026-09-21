@@ -38,13 +38,13 @@ const NavBar = () => {
                 />
             ) : (
                 <div className="flex items-center gap-2">
-                    <SignInButton>
+                    <SignInButton mode="modal">
                         <button className="rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:bg-blue-600 hover:text-white">
                             Sign in
                         </button>
                     </SignInButton>
 
-                    <SignUpButton>
+                    <SignUpButton mode="modal">
                         <button className="rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700">
                             Sign up
                         </button>

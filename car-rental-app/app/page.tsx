@@ -45,7 +45,7 @@ export default function Home() {
   }
 
   function sortCarList(order: any) {
-    if (order == 0) {
+    if (order == 0) { 
       setCarsList(carsOrgList);
       return;
     }
